@@ -11,7 +11,8 @@ struct home: View {
     
     @State private var caloriesLeft = 0.3
     @State private var donutChartColor: Color = Color.green
-    @State private var goalSet = false
+    @State private var goalSet = true //set to false after testing
+    @State private var goalSheetShowing = false
     
     var body: some View {
         NavigationStack{
@@ -28,7 +29,7 @@ struct home: View {
                         Circle()
                             .trim(from: 0, to: caloriesLeft)
                             .stroke(
-                                Color.green,
+                                donutChartColor,
                                 style: StrokeStyle(
                                     lineWidth: 30,
                                     lineCap: .round
@@ -39,14 +40,16 @@ struct home: View {
                             .offset(y: -160)
                         Text("Calories left")
                             .offset(y: -170)
-                        Text("\(caloriesLeft * 100)%")
+                        Text(String(caloriesLeft*100))
                             .offset(y: -150)
                             .bold()
                     }
+                    .onChange(of: caloriesLeft) {
+                        updateDonutChartColor()
+                    }
                 } else {
                     Button {
-                        //edit later
-                        goalSet = true
+                        goalSheetShowing.toggle()
                     } label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 25.0)
@@ -65,9 +68,21 @@ struct home: View {
                             }
                         }
                     }
+                    .sheet(isPresented: $goalSheetShowing, content: {
+                        goalSheet()
+                    })
                 }
             }
             .navigationTitle("Home")
+        }
+    }
+    func updateDonutChartColor() {
+        if caloriesLeft < 0.33 {
+            donutChartColor = Color.red
+        } else if caloriesLeft > 0.66 {
+            donutChartColor = Color.green
+        } else {
+            donutChartColor = Color.yellow
         }
     }
 }

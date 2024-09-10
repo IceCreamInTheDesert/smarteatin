@@ -15,6 +15,7 @@
 		54B08B802C907C3E00E78EA9 /* foods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B08B7F2C907C3E00E78EA9 /* foods.swift */; };
 		54B08B842C907C5300E78EA9 /* addfoodsheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B08B832C907C5300E78EA9 /* addfoodsheet.swift */; };
 		54B08B862C90864200E78EA9 /* goalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B08B852C90864200E78EA9 /* goalSheet.swift */; };
+		54B08B882C9087EE00E78EA9 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B08B872C9087EE00E78EA9 /* settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		54B08B7F2C907C3E00E78EA9 /* foods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = foods.swift; sourceTree = "<group>"; };
 		54B08B832C907C5300E78EA9 /* addfoodsheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addfoodsheet.swift; sourceTree = "<group>"; };
 		54B08B852C90864200E78EA9 /* goalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goalSheet.swift; sourceTree = "<group>"; };
+		54B08B872C9087EE00E78EA9 /* settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				54B08B6F2C907C2700E78EA9 /* smarteatinApp.swift */,
 				54B08B712C907C2700E78EA9 /* ContentView.swift */,
 				54B08B7D2C907C3900E78EA9 /* home.swift */,
+				54B08B872C9087EE00E78EA9 /* settings.swift */,
 				54B08B852C90864200E78EA9 /* goalSheet.swift */,
 				54B08B7F2C907C3E00E78EA9 /* foods.swift */,
 				54B08B832C907C5300E78EA9 /* addfoodsheet.swift */,
@@ -154,6 +157,7 @@
 				54B08B802C907C3E00E78EA9 /* foods.swift in Sources */,
 				54B08B722C907C2700E78EA9 /* ContentView.swift in Sources */,
 				54B08B842C907C5300E78EA9 /* addfoodsheet.swift in Sources */,
+				54B08B882C9087EE00E78EA9 /* settings.swift in Sources */,
 				54B08B702C907C2700E78EA9 /* smarteatinApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
