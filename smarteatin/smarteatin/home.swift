@@ -5,6 +5,12 @@
 //  Created by Dhanush  on 10/9/24.
 //
 
+//omg look a page i actually worked on
+//well just look thru comments 
+//theres a lot of free space at the bottom that you can fill up however you want, maybe add a classic QOTD section and use    .frame(maxWidth: 200, maxHeight: 100) or something like that
+//or maybe advice on controlling eating cadbury chocolate at 12pm
+//im procrastinating homework while typing theese comments out btw
+
 import SwiftUI
 
 struct home: View {
