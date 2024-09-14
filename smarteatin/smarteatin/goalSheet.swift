@@ -18,7 +18,9 @@ struct goalSheet: View {
     @Binding var goalSet: Bool
     
     func verifyGoalSet() {
-        if goal
+        if goal {
+            
+        }
     }
     
     var body: some View {
