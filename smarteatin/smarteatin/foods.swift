@@ -16,6 +16,7 @@ struct foods: View {
     
     @State private var searchFoods = ""
     @State private var foods = []
+    @State private var showFoodSheet = false
     
     var body: some View {
         NavigationStack{
@@ -24,10 +25,15 @@ struct foods: View {
             }
             .toolbar {
                 Button{
-                    print("button tapped")
+                    showFoodSheet.toggle()
                 } label: {
                     Image(systemName: "plus")
                 }
+                .sheet(isPresented: $showFoodSheet, content: {
+                    addfoodsheet()
+                })
+                .presentationDetents([.fraction(0.2)])
+                .presentationDragIndicator(.hidden)
                 .navigationTitle("Foods")
                 .navigationBarTitleDisplayMode(.inline)
             }

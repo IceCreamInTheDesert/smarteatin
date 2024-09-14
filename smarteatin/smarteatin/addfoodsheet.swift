@@ -14,8 +14,21 @@
 import SwiftUI
 
 struct addfoodsheet: View {
+    
+    @State private var name = ""
+    @State private var cals = Int()
+    
     var body: some View {
-        Text("addfoodsheet")
+            List{
+                TextField("Enter the name of the food", text: $name)
+                TextField("Enter the number of calories", value: $cals, format: .number)
+                    .keyboardType(.numberPad)
+                Button{
+                    
+                } label: {
+                    Text("Enter")
+                }
+            }
     }
 }
 

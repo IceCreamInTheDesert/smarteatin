@@ -20,6 +20,17 @@ struct home: View {
     @State private var goalSet = false //set to false after testing
     @State private var goalSheetShowing = false
     @State private var logSheetShowing = false
+    @State private var goal: Int? = nil
+    
+    func updateDonutChartColor() {
+        if caloriesLeft < 0.33 {
+            donutChartColor = Color.red
+        } else if caloriesLeft > 0.66 {
+            donutChartColor = Color.green
+        } else {
+            donutChartColor = Color.yellow
+        }
+    }
     
     var body: some View {
         NavigationStack{
@@ -33,7 +44,7 @@ struct home: View {
                                     lineWidth: 30
                                 )
                                 .frame(maxWidth: 200, maxHeight: 200, alignment: .top)
-                                .offset(y: -150)
+                                .offset(y: -130)
                             Circle()
                                 .trim(from: 0, to: caloriesLeft)
                                 .stroke(
@@ -45,11 +56,11 @@ struct home: View {
                                 )   .rotationEffect(.degrees(-90))
                                 .animation(.easeOut, value: caloriesLeft)
                                 .frame(maxWidth: 200, maxHeight: 200, alignment: .top)
-                                .offset(y: -150)
+                                .offset(y: -130)
                             Text("Calories left")
-                                .offset(y: -160)
-                            Text(String(caloriesLeft*100))
                                 .offset(y: -140)
+                            Text(String(caloriesLeft*100))
+                                .offset(y: -120)
                                 .bold()
                         }
                         .onChange(of: caloriesLeft) {
@@ -63,21 +74,21 @@ struct home: View {
                                 RoundedRectangle(cornerRadius: 25.0)
                                     .foregroundStyle(Color(uiColor: .systemGray5))
                                     .frame(maxWidth: 350, maxHeight: 250, alignment: .top)
-                                    .offset(y: -150)
+                                    .offset(y: -130)
                                 VStack{
                                     Text("You have not set a goal yet")
-                                        .offset(y: -150)
+                                        .offset(y: -130)
                                         .foregroundStyle(.black)
                                         .font(.system(size: 20.0))
                                     Text("Tap here to set a goal")
-                                        .offset(y: -150)
+                                        .offset(y: -130)
                                         .bold()
                                         .font(.system(size: 20.0))
                                 }
                             }
                         }
                         .sheet(isPresented: $goalSheetShowing, content: {
-                            goalSheet()
+                            goalSheet(goal: $goal, goalSet: $goalSet)
                         })
                     }
                     Button{
@@ -95,22 +106,13 @@ struct home: View {
                         }
                     }
                     .frame(maxWidth: 350, maxHeight: 100)
-                    .offset(y: -140)
+                    .offset(y: -120)
                     .sheet(isPresented: $logSheetShowing, content: {
                         logsheet()
                     })
                 }
             }
             .navigationTitle("Home")
-        }
-    }
-    func updateDonutChartColor() {
-        if caloriesLeft < 0.33 {
-            donutChartColor = Color.red
-        } else if caloriesLeft > 0.66 {
-            donutChartColor = Color.green
-        } else {
-            donutChartColor = Color.yellow
         }
     }
 }

@@ -14,11 +14,19 @@ import SwiftUI
 
 struct goalSheet: View {
     
-    var body: some View {
-        Text("goalSheet")
+    @Binding var goal: Int?
+    @Binding var goalSet: Bool
+    
+    func verifyGoalSet() {
+        if goal
     }
-}
-
-#Preview {
-    goalSheet()
+    
+    var body: some View {
+        List{
+            TextField("Enter your goal in calories", value: $goal, format: .number)
+                .padding()
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.2), .large])
+        }
+    }
 }

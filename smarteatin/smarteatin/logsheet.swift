@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct logsheet: View {
+    
+    @State private var logNameField = ""
+    
     var body: some View {
-        Text("logsheet")
+        List{
+            TextField("Enter calories consumed", text: $logNameField)
+                .padding()
+        }
     }
 }
 
