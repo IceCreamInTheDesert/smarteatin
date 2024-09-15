@@ -16,19 +16,48 @@ struct goalSheet: View {
     
     @Binding var goal: Int?
     @Binding var goalSet: Bool
+    @State private var goalTextField: Int? = nil
+    @State private var submitted = false
+    @State private var alertShowing = false
+    @State private var alertMessage: AlertMessage?
+    
+    struct AlertMessage: Identifiable {
+        var id: UUID
+        var message: String
+    }
     
     func verifyGoalSet() {
-        if goal {
-            
+        if (goalTextField != nil) {
+            if (submitted == true) {
+                goal = goalTextField
+                goalSet = true
+            }
+        } else {
+            alertShowing = true
+            alertMessage?.message = "Please fill in all required fields"
         }
+    }
+    
+    func submit() {
+        
     }
     
     var body: some View {
         List{
-            TextField("Enter your goal in calories", value: $goal, format: .number)
+            TextField("Enter your goal in calories", value: $goalTextField, format: .number)
                 .padding()
-                .presentationDragIndicator(.visible)
-                .presentationDetents([.fraction(0.2), .large])
+                .keyboardType(.numberPad)
+            Button{
+                submitted = true
+                verifyGoalSet()
+            } label: {
+                Text("Submit")
+            }
+            .alert("\(String(describing: alertMessage?.message))", isPresented: $alertShowing) {
+                Button("OK", role: .cancel) {
+                    
+                }
+            }
         }
     }
 }

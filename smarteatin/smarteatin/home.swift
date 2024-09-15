@@ -15,17 +15,19 @@ import SwiftUI
 
 struct home: View {
     
-    @State private var caloriesLeft = 0.3
+    @State private var caloriesLeftDC = 0.3
+    @State private var caloriesLeftText = 0
     @State private var donutChartColor: Color = Color.green
     @State private var goalSet = false //set to false after testing
     @State private var goalSheetShowing = false
     @State private var logSheetShowing = false
     @State private var goal: Int? = nil
+    @State private var caloriesConsumed: Int? = nil
     
     func updateDonutChartColor() {
-        if caloriesLeft < 0.33 {
+        if caloriesLeftDC < 0.33 {
             donutChartColor = Color.red
-        } else if caloriesLeft > 0.66 {
+        } else if caloriesLeftDC > 0.66 {
             donutChartColor = Color.green
         } else {
             donutChartColor = Color.yellow
@@ -46,7 +48,7 @@ struct home: View {
                                 .frame(maxWidth: 200, maxHeight: 200, alignment: .top)
                                 .offset(y: -130)
                             Circle()
-                                .trim(from: 0, to: caloriesLeft)
+                                .trim(from: 0, to: caloriesLeftDC)
                                 .stroke(
                                     donutChartColor,
                                     style: StrokeStyle(
@@ -54,16 +56,19 @@ struct home: View {
                                         lineCap: .round
                                     )
                                 )   .rotationEffect(.degrees(-90))
-                                .animation(.easeOut, value: caloriesLeft)
+                                .animation(.easeOut, value: caloriesLeftDC)
                                 .frame(maxWidth: 200, maxHeight: 200, alignment: .top)
                                 .offset(y: -130)
                             Text("Calories left")
                                 .offset(y: -140)
-                            Text(String(caloriesLeft*100))
-                                .offset(y: -120)
-                                .bold()
+                            VStack{
+                                Text(String(caloriesLeftText))
+                                    .offset(y: -120)
+                                    .bold()
+                                Text("calories left today")
+                            }
                         }
-                        .onChange(of: caloriesLeft) {
+                        .onChange(of: caloriesLeftDC) {
                             updateDonutChartColor()
                         }
                     } else {
